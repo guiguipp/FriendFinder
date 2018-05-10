@@ -8,6 +8,7 @@ var userData = require("../data/friends");
 var govData = require("../data/governors");
 
 
+
 // ===============================================================================
 // ROUTING
 // ===============================================================================
@@ -40,7 +41,7 @@ module.exports = function(app) {
     // It will do this by sending out the value "true" have a table
     // req.body is available since we're using the body-parser middleware
     // if (tableData.length < 5) {
-      tableData.push(req.body);
+      userData.push(req.body);
     //   res.json(true);
     // }
     // else {
