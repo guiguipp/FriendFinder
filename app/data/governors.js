@@ -1,7 +1,7 @@
 let governors = [];
 let stances = [];
 
-let waltzStances = [];
+let walzStances = [];
 let murphyStances = [];
 let johnsonStances = [];
 let parrishStances = [];
@@ -368,101 +368,101 @@ let murphy1 = new Stances (
     
     parrishStances.push(parrish4)
     
-    let waltz1 = new Stances (
-    `Tim Waltz`,
+    let walz1 = new Stances (
+    `Tim Walz`,
     `Wages, Benefits, and Workers’ Rights`,
-    `Our Administration will fight to make sure everyone has the chance to thrive – Our Administration will:\n\nIncrease the Minnesota minimum wage to $15 an hour. $15 an hour is not the answer for all of Minnesota’s woes, but it’s central to ensuring that Minnesotans can thrive. On this issue, we have to lead by example – everyone on the Walz Flanagan campaign is paid a living wage (and receives benefits too!).\nImprove and expand safe and sick time laws  so that when a member of your family is sick you can care for that person. When Minnesota workers are sick, they deserve a chance to get healthy. Our Administration think businesses to allow workers to accumulate sick and safe time. They’ll also ensure that there is strong enforcement of laws that prevent employers from penalizing workers for using the sick time. The sick time needs to cover a large range of issues (from domestic violence to providing long-term care).\nFight for fair scheduling rules because showing up for our families is important. One obstacle that modern families face are schedules without predictability or advance notice. Fair scheduling rules ensure that workers receive proper notification regarding their schedules, are compensated for last minute changes, and can rest in between shifts.\nExpand paid family leave, since so many families are sandwiched between raising their children and caring for their parents and grandparents.\nFight wage theft and expand protections against wage theft. Sadly there are still bad-actor employers who find ways to steal wages from workers. Our Administration will ensure that there are stiff penalties, a strong Department of Labor & Industry to hold them accountable, and training to educate workers.\nProtect bargaining rights and encourage worker organizations because being able to work together with your co-workers and bargain for a better deal is an important way to help workers get the pay and benefits they need and to check the power of corporations. Our Administration will protect the right to collectively bargain and will support worker organizations as they fight for their future.\nFight wage theft and expand protections against wage theft because sadly there are still employers who find ways to steal wages from workers, from not paying overtime to not paying workers their last paycheck. Our Administration will ensure that there are stiff penalties, a strong Department of Labor & Industry to hold them accountable, and training to educate workers.\nProtect bargaining rights and encourage worker organizations, because being able to work together with your co-workers and bargain for a better deal is an important way to help workers get the pay and benefits they need and to check the power of corporations. Our Administration will protect the right to collectively bargain and will support worker organizations as they fight for their future.\nSupport Defined Benefit Pensions. These pensions are critical to providing a dignified retirement to people who dedicate their lives to public service. Our Administration will make sure Defined Benefit Pensions are supported and defended.`
+    `Our Administration will fight to make sure everyone has the chance to thrive – Our Administration will:\n\nIncrease the Minnesota minimum wage to $15 an hour. $15 an hour is not the answer for all of Minnesota’s woes, but it’s central to ensuring that Minnesotans can thrive. On this issue, we have to lead by example – everyone on our campaign is paid a living wage (and receives benefits too!).\nImprove and expand safe and sick time laws  so that when a member of your family is sick you can care for that person. When Minnesota workers are sick, they deserve a chance to get healthy. Our Administration think businesses to allow workers to accumulate sick and safe time. They’ll also ensure that there is strong enforcement of laws that prevent employers from penalizing workers for using the sick time. The sick time needs to cover a large range of issues (from domestic violence to providing long-term care).\nFight for fair scheduling rules because showing up for our families is important. One obstacle that modern families face are schedules without predictability or advance notice. Fair scheduling rules ensure that workers receive proper notification regarding their schedules, are compensated for last minute changes, and can rest in between shifts.\nExpand paid family leave, since so many families are sandwiched between raising their children and caring for their parents and grandparents.\nFight wage theft and expand protections against wage theft. Sadly there are still bad-actor employers who find ways to steal wages from workers. Our Administration will ensure that there are stiff penalties, a strong Department of Labor & Industry to hold them accountable, and training to educate workers.\nProtect bargaining rights and encourage worker organizations because being able to work together with your co-workers and bargain for a better deal is an important way to help workers get the pay and benefits they need and to check the power of corporations. Our Administration will protect the right to collectively bargain and will support worker organizations as they fight for their future.\nFight wage theft and expand protections against wage theft because sadly there are still employers who find ways to steal wages from workers, from not paying overtime to not paying workers their last paycheck. Our Administration will ensure that there are stiff penalties, a strong Department of Labor & Industry to hold them accountable, and training to educate workers.\nProtect bargaining rights and encourage worker organizations, because being able to work together with your co-workers and bargain for a better deal is an important way to help workers get the pay and benefits they need and to check the power of corporations. Our Administration will protect the right to collectively bargain and will support worker organizations as they fight for their future.\nSupport Defined Benefit Pensions. These pensions are critical to providing a dignified retirement to people who dedicate their lives to public service. Our Administration will make sure Defined Benefit Pensions are supported and defended.`
     )
     
-    waltzStances.push(waltz1)
+    walzStances.push(walz1)
     
-    let waltz2 = new Stances (
-    `Tim Waltz`,
+    let walz2 = new Stances (
+    `Tim Walz`,
     `Education`,
     `Our Administration will:\n\nFully and equitably fund our schools and reject the budgetary gimmicks we’ve used in the past, because all kids should have access to a high quality education regardless of their zip code. Our Administration will ensure funding for our schools that is not only stable, but equitable.\nSupport and listen to educators, and ensure every student has a caring, qualified, committed teacher.  Educators believe in children. It is not just a job, it’s a calling. We must ensure every educator has the resources, mentoring, time, and support they need. As trusted professionals, they are the best equipped to make decisions that impact their classrooms and students.\nWork intentionally to close the opportunity gap for all students across Minnesota. We must provide them the tools and time to learn. A child’s chance to succeed should not depend on living in a particular zip code. If we’re serious about every child’s future, let’s do what works. We need resources in all schools so students have the support professionals they need (nurses and school counselors), more one-on-one time to learn, inviting classrooms, and a well-rounded curriculum.\nSupport universal Pre-K for Minnesota’s kids. All students deserve learning opportunities at an early age. We need to pursue a two-generation strategy so that we are supporting kids and their families together. Early learning should also be better integrated with Minnesota’s child care assistance programs. We know opportunity gaps begin early. By addressing education equity early we will provide all of our kids a chance to succeed.\nPrioritize education funding coming from the state. Communities should not be reliant entirely on local property taxes to fund schools – that’s a recipe for racial and geographic disparities.\nFollow best practices on recruiting educators of color and providing a diverse teaching staff. Some students go all the way through grade school without having an educator who looks like them or who shares similar cultural experiences. It is important to expose children to a diverse teaching staff. Let’s follow the research on recruiting educators of color, including increasing educator salaries and looking into loan forgiveness for educators of color willing to work in high needs fields of education.\nNix vouchers – In order to give Minnesota students the best chance at success, we need to keep funding to our public schools, not diverting it into voucher programs.\nGiving every Minnesotan a shot at higher education.  Provide 2 years tuition free education at Minnesota state institutions for individuals whose families make less than 125k a year.`
     )
     
-    waltzStances.push(waltz2)
+    walzStances.push(walz2)
     
-    let waltz3 = new Stances (
-    `Tim Waltz`,
+    let walz3 = new Stances (
+    `Tim Walz`,
     `Energy, Environment, and Climate`,
     `Our Administration will:\n\nExpand the Renewable Energy Standard to end our dependence on fossil fuels. Minnesota already gets 21% of its energy from renewable sources. And thousands of Minnesotans from all over the state now work in the clean energy economy. To continue to grow this sector, Our Administration support increasing our renewable energy standard to ensure that by 2030, at least 50% of our energy comes from renewables.\nReduce carbon emissions in all sectors to fight climate change. Our Administration support reducing greenhouse gas emissions by 80% by 2050 and as Governor and Lt. Governor, they will work to make sure that we reduce emissions in all sectors of the economy.\nWork with farmers on clean water solutions across Minnesota. Farming is vital to Minnesota’s economy. Farmers are great stewards of the land and Our Administration will work alongside them to enact policies and programs that support innovative farming practices, like cover crops and drainage water management, which clean our water and improve a farmer’s bottom line.\nFight for energy justice. The environmental challenges facing Minnesota often have a disproportionate impact on low-income Minnesotans, communities of color, the elderly, and children. These impacts amplify the economic and health challenges these communities face. As Governor and Lt. Governor, Our Administration will incorporate the values of environmental justice and robust stakeholder engagement initiatives across the State’s Executive Branch agencies.\nFollow Minnesota’s processes when considering new projects.  Minnesota has one of the most stringent environmental review processes in the country. As Minnesota is considering new energy projects, Our Administration will follow these processes before making any decisions.\nAdvocate for tribal rights while assessing Minnesota projects. Our Administration have been working from the beginning to make sure that tribal concerns over Line 3 are heard and addressed. Tim submitted a letter to the Public Utilities Commission expressing his concern that tribal rights be respected through the review process.`
     )
     
-    waltzStances.push(waltz3)
+    walzStances.push(walz3)
     
-    let waltz4 = new Stances (
-    `Tim Waltz`,
+    let walz4 = new Stances (
+    `Tim Walz`,
     `Transportation`,
     `Our Administration will:\n\nSecure a stable funding source for transit and transportation by increasing the gas tax because Minnesota must modernize and expand our transportation and transit system in order to connect more people to opportunity and to compete for major employers and the jobs they bring to our state. To meet our current and future needs, Our Administration will increase the gas tax and expand funding for transit and transportation in a way that is fair and equitable.\nExpand the transit network both in the metro and in rural Minnesota to help take commuters off the road, make less congestion for those who choose to drive, reduce pollution, and save wear and tear on our roads. Younger generations increasingly show a preference for transit, while older residents look to transit to keep them mobile and in their homes longer. Our Administration support expanding bus networks across the state. They also support strategic investments in high speed commuter rail, light rail and bus rapid transit projects, which move even more people at greater speeds.\nBuild a stronger partnership with employers and freight haulers since the movement of freight around this state impacts jobs, our environment, and our cost of living. Our Administration will engage the businesses, farmers and others hauling freight through our state in a conversation about how our transportation system can be more efficient for freight haulers while still protecting the needs of our communities.\nCreate a taskforce on the future of transportation because travel patterns are changing and more people are choosing to bike and walk. Others are choosing to utilize ride sharing services or to maximize their income by driving for one of these services. Autonomous vehicles are on the horizon. To keep pace with the changes we’re experiencing, Our Administration will convene a One Minnesota taskforce on the future of transportation in our state.`
     )
     
-    waltzStances.push(waltz4)
+    walzStances.push(walz4)
     
-    let waltz5 = new Stances (
-    `Tim Waltz`,
+    let walz5 = new Stances (
+    `Tim Walz`,
     `American Indian Issues`,
     `Our Administration will:\nHonor tribal sovereignty and government to government relationships. Minnesota’s tribes are sovereign nations and should be treated as such. Treaty rights must be regarded as the supreme law of the land and will be honored. Tribal governments will be consulted in decision making on the front end. When our tribal communities are thriving in Minnesota, the entire state benefits.\nPrioritize equitable education for Native students.\nMake BIE school funding permanent, invest in Dakota and Ojibwe language immersion programs in culturally contextualized schools\nEnsure history and culture of Native people are included in Minnesota’s K-12 education system\nSupport and fund Adult Basic Education programs, career skill development for Native adults\nWork with tribal agencies, non-profits and especially schools to provide wrap around services for Native students and their families\nSupport tuition waivers for Native American students in higher education – with priority given to future educators\nWork in collaboration with tribes to combat the opioid crisis.\nLessen barriers to treatment by providing funds to expand culturally competent long-term treatment programs\nAcknowledge and work to heal multi-generational and historic trauma\nIncrease access to harm-reduction methods and non-judgmental, non-coercive services\nProtect and invest in the well being Native American children and their families.\nFund public housing, food stability and supportive assistance programs and work with tribes to create stable family networks\nEducate those working with Native American families on historical trauma and Native families’ increased vulnerability\nCommit to addressing systemic racism and implicit bias in state agencies\nRecognize that Native American children are best served by being placed with Native families – reduce barriers for Native families to take custody of their relatives`
     )
     
-    waltzStances.push(waltz5)
+    walzStances.push(walz5)
     
-    let waltz6 = new Stances (
-    `Tim Waltz`,
+    let walz6 = new Stances (
+    `Tim Walz`,
     `Gun Violence Prevention`,
     `Our Administration wants to keep families safe and let Minnesotans enjoy their Second Amendment rights:\n\nSupport a Ban on Assault Weapons in Minnesota. Tim has long said that he’s open to an assault weapons ban, and he’s seen enough – we need a ban on military style assault rifles in Minnesota.\nPass Universal Background Checks. The facts don’t lie – in states where there are universal background check laws on the books, there are 52 percent fewer mass shootings. 48 percent fewer law enforcement officials are shot to death with handguns. 48 percent fewer people commit suicide by firearm. This is a step we can take to keep guns out of the hands of those who shouldn’t have them.\nFight dangerous “Stand Your Ground” bills. Research conducted by the American Medical Association tells us that states with “Stand your Ground” laws on the books see a significant spike in homicide by firearm. This bill would be a non-starter in Our Administration’s administration.\nFund our public institutions to do research into gun violence If Washington won’t fund research into gun violence, Minnesota will. Our Administration will work to pass legislation that funds our public institutions to conduct research into gun violence prevention.\nInstitute the Gun Violence Prevention Order in Minnesota. This common sense law would enable law enforcement and family members to petition a court to prohibit an individual from possessing firearms if a judge finds they pose a significant danger to themselves or others.\nBuild the coalition to make progress on gun violence prevention. Minnesota had to fend off destructive legislation this year that would have made our communities less safe. As a lifelong sportsman and hunter, Tim has the credibility among law-abiding gun owners to build the coalitions necessary to finally get things done on this issue.`
     )
     
-    waltzStances.push(waltz6)
+    walzStances.push(walz6)
     
-    let waltz7 = new Stances (
-    `Tim Waltz`,
+    let walz7 = new Stances (
+    `Tim Walz`,
     `Economy`,
     `Our Administration will continue Minnesota’s leadership in progressive action, securing broad prosperity for all. Our Administration will:\n\nGuarantee and fully fund pre-K and K-12 education for our children, making Minnesota the “education state” and creating a workforce that propels Minnesota’s growth. Minnesota can and should continue to create the industries of tomorrow.\nStand up for our unions. Union membership is the surest pathway to the middle class. Our Administration will stand up against assaults on our right to collective bargaining and push back against so-called “Right to Work” legislation.\nRemove barriers to growth by encouraging equity and inclusion. Initiatives like connecting rural residents to the internet through dramatically expanded broadband and closing the opportunity gap for minorities not only creates fairness, it creates economic growth.\nImprove our infrastructure by passing a $1 billion dollar bonding bill that will include badly needed funding for highways, bridges, mass transit, and bikeways at the state, metro and local levels.\nSupport Minnesota’s businesses while keeping working Minnesotans at the forefront. Minnesota has a fantastic workforce and a great quality of life. Government should serve Minnesota’s families. Our Administration support re-investing in the Minnesota Investment Fund and Minnesota Job Creation Fund to help start-up companies create new jobs.\nExpand the Middle Class and encourage people to organize. Our state government should protect our economy from increasing concentration of wealth in the top one percent. One way to ensure that is removing barriers so that workers are free to organize. Another is to expand the Working Family Tax Credit and other tax breaks for the lower- and middle-class, while ensuring that the top one percent pay their fair share.`
     )
     
-    waltzStances.push(waltz7)
+    walzStances.push(walz7)
     
-    let waltz8 = new Stances (
-    `Tim Waltz`,
+    let walz8 = new Stances (
+    `Tim Walz`,
     `Health Care`,
     `Our Administration will:\n\nProvide a strong public health care option for any Minnesotan who wants it. Tim believes that a single payer type system is on Minnesota’s horizon, but that immediate action needs to be taken to control costs and improve care. Minnesotans don’t have to wait for the federal government to act. We have a public health care option right now—MinnesotaCare—that delivers high quality care at a price Minnesotans can afford. Our Administration will fight for it on Day One.\nBring the best health care minds and Minnesota families facing health care challenges together. Our Administration will build a One Minnesota coalition focused on reducing health care costs and increasing Minnesotans’ access to real health care that makes sense for their community.\nTackling barriers to mental health care. The impact of mental health in our communities has been ignored for too long. Access to affordable mental health care is a right, too. It’s time we listen to and deliver for Minnesotans and their families facing mental health challenges. They deserve our love, respect and commitment to meaningful action.\nMake additional investments into medical research here in Minnesota. Minnesota is poised to make huge steps forward on the prevention side of health care, which experts agree will bring down costs. With Minnesota’s great public institutions,  our medical device industry, and our premier medical facilities, Our Administration think that Minnesota is where we can find the solutions that will change the game when it comes to bringing health care costs down.\nStand with organizations that support women’s health. Tim believes in a woman’s right to choose and has a 100% voting record with Planned Parenthood. He will continue this support as Governor.`
     )
     
-    waltzStances.push(waltz8)
+    walzStances.push(walz8)
     
-    let waltz9 = new Stances (
-    `Tim Waltz`,
+    let walz9 = new Stances (
+    `Tim Walz`,
     `Racial Equity`,
     `Our Administration will:\n\nMake access to education for everyone a priority. We know that there are investments that Minnesota can make to help students from diverse backgrounds. That includes programs that encourage hiring more people of color and indigenous people as teachers and getting POCI students exposure to careers in STEM.\nNurture healthy families across Minnesota. We must make meaningful investments into improving access to childcare, invest in families that want to combat the opioid epidemic, and ensure that health care providers are providing culturally competent care.\nProvide economic opportunities for every Minnesotan. When Minnesota has a surplus, we should use that money to in invest in our communities, not give tax break to tobacco companies and the wealthiest Minnesotans. This includes targeted job creation programs in communities of color and indigenous communities.\nPush for criminal justice reform and civil rights for everyone. Our Administration favor creating a taxation and regulation system for adult-use cannabis in Minnesota. African Americans in Minnesota are negatively and disproportionately impacted by these laws. They also support outlawing private prisons in Minnesota – There should be no profit motive attached to recidivism.`
     )
     
-    waltzStances.push(waltz9)
+    walzStances.push(walz9)
     
-    let waltz10 = new Stances (
-    `Tim Waltz`,
+    let walz10 = new Stances (
+    `Tim Walz`,
     `Agriculture`,
     `Our Administration will:\n\nWork aggressively to expand markets and make sure our producers and businesses have the level playing field they need to compete in our global marketplace.\nPartner with our farmers and businesses to unleash Minnesota’s innovative spirit to add value to farm commodities and create good paying jobs across our state.\nSupport new and beginning farmers by helping them overcome barriers to entry and find opportunities to carry on Minnesota’s strong farming traditions.\nInvest in agriculture-related research to continue enhancing productivity of Minnesota agriculture and develop new win-win solutions to complex problems.\nSupport the growth of organic and locally grown products that offer new opportunities for both rural and urban Minnesotans to be part of Minnesota’s strong agricultural tradition.\nAchieve cleaner water by working together and looking for win-win solutions to this complex problem.`
     )
     
-    waltzStances.push(waltz10)
+    walzStances.push(walz10)
     
-    let waltz11 = new Stances (
-    `Tim Waltz`,
+    let walz11 = new Stances (
+    `Tim Walz`,
     `Childcare`,
     `Our Administration will support families by working to make child care more affordable and accessible for all. Our Administration will:\n\nIncrease the Child and Dependent Care tax credit that is available to low-income families to help cover the costs of child care.\nIncrease income limits for the Child and Dependent Care tax credit to make sure more Minnesota families can get the support they need to work and care for their kids.\nFully fund and forecast the Child Care Assistance Program.\nRemove red tape and fees that make opening and running a child care program unnecessarily difficult and costly.\nCreate a Child Care Innovation Center, which will offer seed funding, training, and technical assistance to folks who want to start a child care program.\nSupport progressive paid parental leave policies, so that all parents are able to stay home as they welcome a new member to their family.`
     )
     
-    waltzStances.push(waltz11)
+    walzStances.push(walz11)
     
-    let waltz12 = new Stances (
-    `Tim Waltz`,
+    let walz12 = new Stances (
+    `Tim Walz`,
     `LGBTQ Minnesotans`,
     `Our Administration wants every Minnesotan to feel safe in their communities, regardless of sexual orientation and gender identity:\n\nStand against so-called “Bathroom Bills.” These bills only serve to endanger trans people while doing nothing to make our schools safer.\nBan the harmful practice of “Conversion Therapy.” Time to send this cruel practice to the ashbin of history where it belongs.\nTake on bullying and harassment in schools. Minnesota kids can’t learn if they don’t feel safe in school. Our Administration will build on the work on the anti-bullying bill passed during the 2014 legislative session.`
     )
     
-    waltzStances.push(waltz12)
+    walzStances.push(walz12)
     
 
 
@@ -472,13 +472,13 @@ let murphy1 = new Stances (
 
 
 
-let waltzGov = new Governor (
-    `walt`,
-    `Tim Waltz`,
+let walzGov = new Governor (
+    `walz`,
+    `Tim Walz`,
     `https://s3.amazonaws.com/data.minnpost/projects/minnpost-whos-running-2018/candidate-photos/tim-walz-head_150.jpg`,
     `DFL`,
     `http://www.walzforgovernor.org/`,
-    waltzStances
+    walzStances
     )
 
 let murphyGov = new Governor (

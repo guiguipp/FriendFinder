@@ -15,10 +15,9 @@
   <div class="container">
     
     <div class="jumbotron">
-      <h1 class="text-center"><span class="fa fa-fire"></span> Hot Restaurant</h1>
+      <h1 class="text-center"><span class="fa fa-fire"></span> Voting both</h1>
       <hr>
-      <h2 class="text-center">Voting both</h2>
-      <br>
+      
 
       <div class="text-center">
         <a href="../survey"><button class="btn btn-lg btn-primary"><span class="fa fa-list-alt"></span> Take Survey</button></a>
@@ -32,7 +31,10 @@
         <div class="panel-body">
             <form>
             <div id= "aPlaceForSurvey">
-                <input type="submit" name="g" value="Submit" id="g">
+                <input type="submit" name="g" value="Submit" id="g"><br>
+                <button type="button" class="btn btn-danger" id="toggle_dfl">Show/Hide DFL</button>
+                <button type="button" class="btn btn-primary" id="toggle_rep">Show/Hide Republicans</button>
+                
             </div>
             </form>
 
@@ -51,7 +53,7 @@
 </body>
 <script>
 $( document ).ready(function() {
-console.log( "ready!" );
+console.log( "grinding human meat..." );
 function getAPIdata() {
 
   var currentURL = window.location.origin;
@@ -60,60 +62,104 @@ function getAPIdata() {
   $.ajax({ url: currentURL + "/api/governors", method: "GET" })
     .then(function(dataFromAPI) {
     console.log("URL: " + currentURL + "/api/governors");
-
-    function lineBreak(jsText){
-        return jsText.replace(/["\n"]/g,"<br>")
-    }
     const d = dataFromAPI.governors
     console.log(d)
-    d.forEach((e,i) => {
+    for (let t = 0; t < 4; t++) {
+        d.forEach((e,i) => {
         let surveyDiv = $("<div>");
-            surveyDiv.addClass("question");
+            surveyDiv.addClass(`${e.party}`);
             surveyDiv.attr("id", e.id);
             $("#aPlaceForSurvey").prepend(surveyDiv);
             
-            // Then display the remaining fields in the HTML (Section Name, Date, URL)
-            let stance1 = e.stances[0].issue;
-            let question1= lineBreak(e.stances[0].stance);
+            let stance = e.stances[t].issue;
+            let question = lineBreak(e.stances[t].stance);
+            let option1 = {num : 2, string : "Strongly Agree"};
+            let option2 = {num : 1, string : "Agree"};
+            let option3 = {num : 0, string : "Neither Agree nor Disagree"};
+            let option4 = {num : -1, string : "Disagree"};
+            let option5 = {num : -2, string : "Strongly Disagree"};
             let buttonSet = 
             `
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}" value="2" autocomplete="off"> Strongly Agree
+                <input type="radio" name="${e.id}${t}" value="${option1.num}" autocomplete="off">${option1.string}
             </label>
             <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}" value="1" autocomplete="off"> Agree
+                <input type="radio" name="${e.id}${t}" value="${option2.num}" autocomplete="off">${option2.string}
             </label>
             <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}" value="0" autocomplete="off"> Neither agree nor disagree
+                <input type="radio" name="${e.id}${t}" value="${option3.num}" autocomplete="off">${option3.string}
             </label>
             <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}" value="-1" autocomplete="off"> Disagree
+                <input type="radio" name="${e.id}${t}" value="${option4.num}" autocomplete="off">${option4.string}
             </label>
             <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}" value="-2" autocomplete="off"> Strongly Disagree
+                <input type="radio" name="${e.id}${t}" value="${option5.num}" autocomplete="off">${option5.string}
             </label>
             </div>`
-            $("#" + e.id).append(`<h3> ${stance1} </h3> <br> <p> ${question1}\n${buttonSet}`);
+            $("#" + e.id).append(`<h3> ${stance} </h3> <br> <p> ${question}\n${buttonSet}`);
         });
+        }
+
 
       })}
-    
+$("#toggle_dfl").click(function(){
+    $(".DFL").toggle();
+});    
+$("#toggle_rep").click(function(){
+    $(".Republican").toggle();
+});    
 getAPIdata();
 
 $( "form" ).submit(function( event ) {
-  var result = ( $( this ).serializeArray() );
-  event.preventDefault();
-  console.log("results: ", result);
-  let values = result.filter(result => result.name === "murphy");
-  console.log("Murphy: ", values);
-  console.log("Murphy values: ", values[0].value);
-  console.log(typeof values[0].value);
-  console.log(parseInt(values[0].value));
+var allValues = ( $( this ).serializeArray() );
+event.preventDefault();
+//   console.log("results: ", allValues);
 
+// creating arrays where value matches the name of candidate (strips the number from the id)
+// problem: this is not dynamic. If create a new candidate, has to be able to run this
+// can surely be done by a for loop (but then should be using data from API)
+let murphyValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "murphy");
+let walzValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "walz");
+let johnsonValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "johnson");
+let parrishValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "parrish");
+let stephensValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "stephens");
+// console.log("Murphy: ", murphyValues);
+// console.log("Walz: ", walzValues);
+// console.log("Johnson: ", johnsonValues);
+// console.log("Parrish: ", parrishValues);
+// console.log("Stephens: ", stephensValues);
   
-});
+arrayToNum(murphyValues);
+console.log("Murphy avg: ", arrayToNum(murphyValues));
+arrayToNum(walzValues);
+console.log("Walz avg: ", arrayToNum(walzValues));
+arrayToNum(parrishValues);
+console.log("Parrish avg: ", arrayToNum(parrishValues));
+arrayToNum(johnsonValues);
+console.log("Johnson avg: ", arrayToNum(johnsonValues));
+arrayToNum(stephensValues);
+console.log("Stephens avg: ", arrayToNum(stephensValues));
 
+});
+// finds the average of any array of numbers
+const arrayAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
+// converts "value" from string to number, then returns average 
+function arrayToNum(array){
+    let arrayNums = [];
+    for (let i = 0; i < array.length; i++) {
+      arrayNums.push(parseInt(array[i].value));
+    //   console.log("arrayNums: ", arrayNums);
+    }
+      let average = arrayAvg(arrayNums);
+    //   console.log("arrayAvg(arrayNums)", arrayAvg(arrayNums))
+      return average;
+    }    
+  
+// makes the text less compact by replacing all js \n by html <br>
+function lineBreak(jsText){
+    return jsText.replace(/["\n"]/g,"<br>")
+}
 
 });
 </script>
