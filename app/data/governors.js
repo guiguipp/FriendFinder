@@ -7,7 +7,8 @@ let johnsonStances = [];
 let parrishStances = [];
 let stephensStances = [];
 
-function Governor (name, photo, party, site, stances) {
+function Governor (id, name, photo, party, site, stances) {
+    this.id = id,
     this.name = name,
     this.photo = photo,
     this.party = party,
@@ -472,6 +473,7 @@ let murphy1 = new Stances (
 
 
 let waltzGov = new Governor (
+    `walt`,
     `Tim Waltz`,
     `https://s3.amazonaws.com/data.minnpost/projects/minnpost-whos-running-2018/candidate-photos/tim-walz-head_150.jpg`,
     `DFL`,
@@ -480,6 +482,7 @@ let waltzGov = new Governor (
     )
 
 let murphyGov = new Governor (
+    `murphy`,
     `Erin Murphy`,
     `https://s3.amazonaws.com/data.minnpost/projects/minnpost-whos-running-2018/candidate-photos/erin-murphy_150.jpg`,
     `DFL`,
@@ -488,6 +491,7 @@ let murphyGov = new Governor (
     )
 
 let johnsonGov = new Governor (
+    `johnson`,
     `Jeff Johnson`,
     `https://s3.amazonaws.com/data.minnpost/projects/minnpost-whos-running-2018/candidate-photos/jeff-johnson_150.jpg`,
     `Republican`,
@@ -496,6 +500,7 @@ let johnsonGov = new Governor (
     )
 
 let parrishGov = new Governor (
+    `parrish`,
     `Phillip Parrish`,
     `https://s3.amazonaws.com/data.minnpost/projects/minnpost-whos-running-2018/candidate-photos/phillip-parrish_150.jpg`,
     `Republican`,
@@ -504,6 +509,7 @@ let parrishGov = new Governor (
     )
 
 let stephensGov = new Governor (
+    `stephens`,
     `Mary Giuliani Stephens`,
     `https://s3.amazonaws.com/data.minnpost/projects/minnpost-whos-running-2018/candidate-photos/mary-giuliani-stephens_150.jpg`,
     `Republican`,
