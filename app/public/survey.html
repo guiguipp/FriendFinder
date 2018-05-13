@@ -9,19 +9,24 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Chivo|Marvel|Monoton|Reem+Kufi" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
 
   <div class="container">
     
     <div class="jumbotron">
-      <h1 class="text-center"><span class="fa fa-fire"></span> Voting both</h1>
+      <h1 class="text-center"> Voting both</h1>
       <hr>
       
 
       <div class="text-center">
-        <a href="../survey"><button class="btn btn-lg btn-primary"><span class="fa fa-list-alt"></span> Take Survey</button></a>
-        <a href="../candidates"><button class="btn btn-lg btn-danger"><span class="fa fa-credit-card"></span> See candidates</button></a>
+        <a href="../survey"><button class="btn btn-lg btn-primary">Take Survey</button></a>
+        <a href="../candidates"><button class="btn btn-lg btn-danger">See candidates</button></a>
       </div>
 
     </div>
@@ -31,7 +36,15 @@
         <div class="panel-body">
             <form>
             <div id= "aPlaceForSurvey">
-                <input type="submit" name="g" value="Submit" id="g"><br>
+                <div class="fixed-action-btn">
+                
+                        <input type="submit" id="vote" class="btn-large waves-effect waves-light" value="Vote">
+                        <a id="view" class="btn-large red waves-effect waves-light modal-trigger" href="#modal1">View </a>
+                
+                        <!-- <input type="submit" class="btn-large waves-effect waves-light" value="Submit" id="sub_button"> <br> -->
+
+                    
+                </div>
                 <button type="button" class="btn btn-danger" id="toggle_dfl">Show/Hide DFL</button>
                 <button type="button" class="btn btn-primary" id="toggle_rep">Show/Hide Republicans</button>
                 
@@ -39,6 +52,19 @@
             </form>
 
         </div>
+    </div>        
+        <div id="modal1" class="modal">
+                <div class="modal-content">
+                <span id="gov_name"> </span>
+                <span id="gov_party"></span>
+                <span id="gov_photo"></span>
+                <span id="gov_site"></span>
+                </div>
+                <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+              </div>
+
     </div>
     
     <footer class="footer">
@@ -52,6 +78,8 @@
 
 </body>
 <script>
+$(".modal").modal();
+    
 $( document ).ready(function() {
 console.log( "grinding human meat..." );
 // triggers primary mode   
@@ -61,6 +89,18 @@ $("#toggle_dfl").click(function(){
 $("#toggle_rep").click(function(){
     $(".Republican").toggle();
     });
+
+/*  I had to create two buttons due to materialize (cannot trigger my 
+function + open the modal on the same button easily). That said, I don't want people trying
+to look at the candidate before they vote. Whence the (ugly) following  */
+
+$("#view").hide()
+$("#vote").click(function(){
+    $("#view").toggle();
+});
+$("#view").click(function(){
+    $("#view").toggle();
+});
 
 function getAPIdata(){
     var currentURL = window.location.origin;
@@ -118,8 +158,7 @@ function createSurvey(govs){
 
 getAPIdata();
 
-function getScores(govs){
-
+function getScores(dataSet){
     $( "form" ).submit(function( event ) {
     // getting all the values entered from the form
     var allValues = ( $( this ).serializeArray() );
@@ -129,8 +168,9 @@ function getScores(govs){
     // governors will be my function, empty array is my starting object
     // line is the array I'm iterating
     .reduce((governors,line) => {
+        // serialize creates a JavaScript array of objects, 
+        // to make reduce work, I have to convert the object into an array
         line = Object.values(line)
-        // console.log(line);
         // need to trim the num to get the name of the candidate
         line[0] = line[0].replace(/([\d])+/g,"");
         // creates an array only if it doesn't already exist
@@ -139,71 +179,46 @@ function getScores(govs){
         governors[line[0]].push(parseInt(line[1]))
         // governors is the array returned as govScores
         return governors;
-    },[])
-    
-    console.log("govScores: ", govScores);
-    bestScore(govScores)
-    // console.log("Keys: ", Object.keys(govScores))
-    // console.log("Values: ", Object.values(govScores));
-        
-    // Object.keys(govScores).forEach((e, i) => {
-    //     let name = e;
-    //     console.log("name: ", name);
-    // })
-    // Object.entries(govScores).forEach((e) => {
-    //     console.log("Object.entries: ", e);
-    //     let name = `${key}`
-    //     let value = `${value}`
-    //     console.log("name: ",name,"\nValue",value)
-    // })
-   
-    // console.log(arrayAvg(Object.values(e)))
-
-
-    /*
-    // creating arrays where value matches the name of candidate (strips the number from the id)
-    // problem: this is not dynamic. If create a new candidate, has to be able to run this
-     // can surely be done by a for loop (but then should be using data from API)
-    let murphyValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "murphy");
-    let walzValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "walz");
-    let johnsonValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "johnson");
-    let parrishValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "parrish");
-    let stephensValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "stephens");
-
-    arrayToNum(murphyValues);
-    console.log("Murphy avg: ", arrayToNum(murphyValues));
-    arrayToNum(walzValues);
-    console.log("Walz avg: ", arrayToNum(walzValues));
-    arrayToNum(parrishValues);
-    console.log("Parrish avg: ", arrayToNum(parrishValues));
-    arrayToNum(johnsonValues);
-    console.log("Johnson avg: ", arrayToNum(johnsonValues));
-    arrayToNum(stephensValues);
-    console.log("Stephens avg: ", arrayToNum(stephensValues));
-    */
+    },[])    
+    // console.log("govScores: ", govScores);
+    bestScore(govScores,dataSet)
     });
 }
-function bestScore(scoreObject) {
+function bestScore(scoreObject,dataSet) {
     let arrayGov = [];
     let arrayScores = [];
     // creates an array with names, and array with scores where govs and their scores are stored
     for (const [name, value] of Object.entries(scoreObject)) {
-        console.log(`Governor name: ${name} average score: ${arrayAvg(value)}`);
         arrayGov.push(name);
         arrayScores.push(parseFloat(arrayAvg(value)));
         };
     // find the highest by spreading
     let highScore = Math.max(...arrayScores);
-    console.log(highScore);
-    /* find the index of the highest in the Array 
+    // console.log("highest average in the array: ", highScore);
+    /* find the index of the highest average in the Array 
     (in the future, this could be improved if multiple govs have the same score (right now, only returns 1)
     could use the "filter" function to return an array, etc. */
     let bestScore = arrayScores.indexOf(highScore);
     // this index is also the one of the gov who got that score
     let bestGov = arrayGov[bestScore]
     console.log("Best Gov: ", bestGov)
+    displayInfo(dataSet, bestGov)
     return bestGov
     };
+
+function displayInfo(dataSet,chosenOne){
+    dataSet.forEach((e) => {
+        if (e.id === chosenOne) {
+            // we can get all the information from the Governor via this for each loop
+            console.log(e.party)
+            $("#gov_name").html(`<h4>You voted for: ${e.name}`)
+            $("#gov_party").text(`${e.party}`);
+            $("#gov_photo").html(`<img src="${e.photo}" alt="${e.name}}">`);
+            $("#gov_site").html(`More information on their campaign <a href="${e.site}"site">site</a>`);
+
+        }
+    })
+}
 
 // arrow fonction to find the average of any array of numbers
 const arrayAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
