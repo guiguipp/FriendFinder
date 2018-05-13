@@ -23,6 +23,10 @@ app.get("/candidates", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/candidates.html"));
   });
 
+  app.get("/user", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/user.html"));
+  });
+
   // If no matching route is found default to home
   app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));

@@ -7,19 +7,8 @@
 var userArray = [
     {
       userName: "Ahmed",
-      userPhoto: "ahmed@example.com",
-      userScores: [
-        5,
-        1,
-        4,
-        4,
-        5,
-        1,
-        2,
-        5,
-        4,
-        1
-        ]
+      userEmail: "ahmed@example.com",
+      userId: "ahmed", 
     }
   ];
   

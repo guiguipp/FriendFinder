@@ -33,7 +33,16 @@ module.exports = function(app) {
   // ---------------------------------------------------------------------------
 
   app.post("/api/friends", function(req, res) {
-      userData.push(req.body);
-    
-  });
+    let existingIds = [];
+    userData.forEach((e) => {
+      existingIds.push(e.userId)
+    });    
+      if(existingIds.indexOf(req.body.userId) === -1) {
+        res.json(true);
+        userData.push(req.body);
+      }
+      else {
+        res.json(false);
+      }
+    })
 };
