@@ -54,109 +54,161 @@
 <script>
 $( document ).ready(function() {
 console.log( "grinding human meat..." );
-function getAPIdata() {
-
-  var currentURL = window.location.origin;
-
-  // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
-  $.ajax({ url: currentURL + "/api/governors", method: "GET" })
-    .then(function(dataFromAPI) {
-    console.log("URL: " + currentURL + "/api/governors");
-    const d = dataFromAPI.governors
-    console.log(d)
-    for (let t = 0; t < 4; t++) {
-        d.forEach((e,i) => {
-        let surveyDiv = $("<div>");
-            surveyDiv.addClass(`${e.party}`);
-            surveyDiv.attr("id", e.id);
-            $("#aPlaceForSurvey").prepend(surveyDiv);
-            
-            let stance = e.stances[t].issue;
-            let question = lineBreak(e.stances[t].stance);
-            let option1 = {num : 2, string : "Strongly Agree"};
-            let option2 = {num : 1, string : "Agree"};
-            let option3 = {num : 0, string : "Neither Agree nor Disagree"};
-            let option4 = {num : -1, string : "Disagree"};
-            let option5 = {num : -2, string : "Strongly Disagree"};
-            let buttonSet = 
-            `
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}${t}" value="${option1.num}" autocomplete="off">${option1.string}
-            </label>
-            <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}${t}" value="${option2.num}" autocomplete="off">${option2.string}
-            </label>
-            <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}${t}" value="${option3.num}" autocomplete="off">${option3.string}
-            </label>
-            <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}${t}" value="${option4.num}" autocomplete="off">${option4.string}
-            </label>
-            <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}${t}" value="${option5.num}" autocomplete="off">${option5.string}
-            </label>
-            </div>`
-            $("#" + e.id).append(`<h3> ${stance} </h3> <br> <p> ${question}\n${buttonSet}`);
-        });
-        }
-
-
-      })}
+// triggers primary mode   
 $("#toggle_dfl").click(function(){
     $(".DFL").toggle();
-});    
+    });    
 $("#toggle_rep").click(function(){
     $(".Republican").toggle();
-});    
+    });
+
+function getAPIdata(){
+    var currentURL = window.location.origin;
+    // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+    $.ajax({ url: currentURL + "/api/governors", method: "GET" })
+        .then(function(dataFromAPI) {
+        console.log("URL: " + currentURL + "/api/governors");
+        createSurvey(dataFromAPI.governors)
+        getScores(dataFromAPI.governors)
+        return dataFromAPI;
+        });
+    }
+
+function createSurvey(govs){
+    for (let t = 0; t < 4; t++) {
+        govs.forEach((e,i) => {
+            let surveyDiv = $("<div>");
+                surveyDiv.addClass(`question ${e.party}`);
+                surveyDiv.attr("id", e.id);
+                $("#aPlaceForSurvey").prepend(surveyDiv);
+                
+            let stance = e.stances[t].issue;
+            let question = lineBreak(e.stances[t].stance);
+            
+            let option1 = {num : 5, string : "Strongly Agree"};
+            let option2 = {num : 3, string : "Agree"};
+            let option3 = {num : 0, string : "Neither Agree nor Disagree"};
+            let option4 = {num : -3, string : "Disagree"};
+            let option5 = {num : -5, string : "Strongly Disagree"}
+                
+            let buttonsSet = 
+                `
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary">
+                <input type="radio" name="${e.id}${t}" value="${option1.num}" autocomplete="off">${option1.string}
+                </label>
+                <label class="btn btn-secondary">
+                <input type="radio" name="${e.id}${t}" value="${option2.num}" autocomplete="off">${option2.string}
+                </label>
+                <label class="btn btn-secondary">
+                <input type="radio" name="${e.id}${t}" value="${option3.num}" autocomplete="off">${option3.string}
+                </label>
+                <label class="btn btn-secondary">
+                <input type="radio" name="${e.id}${t}" value="${option4.num}" autocomplete="off">${option4.string}
+                </label>
+                <label class="btn btn-secondary">
+                <input type="radio" name="${e.id}${t}" value="${option5.num}" autocomplete="off">${option5.string}
+                </label>
+                </div>`
+                $("#" + e.id).append(`<h3> ${stance} </h3> <br> <p> ${question}\n${buttonsSet}`);
+            });
+        }
+    }
+
+
 getAPIdata();
 
-$( "form" ).submit(function( event ) {
-var allValues = ( $( this ).serializeArray() );
-event.preventDefault();
-//   console.log("results: ", allValues);
+function getScores(govs){
 
-// creating arrays where value matches the name of candidate (strips the number from the id)
-// problem: this is not dynamic. If create a new candidate, has to be able to run this
-// can surely be done by a for loop (but then should be using data from API)
-let murphyValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "murphy");
-let walzValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "walz");
-let johnsonValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "johnson");
-let parrishValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "parrish");
-let stephensValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "stephens");
-// console.log("Murphy: ", murphyValues);
-// console.log("Walz: ", walzValues);
-// console.log("Johnson: ", johnsonValues);
-// console.log("Parrish: ", parrishValues);
-// console.log("Stephens: ", stephensValues);
-  
-arrayToNum(murphyValues);
-console.log("Murphy avg: ", arrayToNum(murphyValues));
-arrayToNum(walzValues);
-console.log("Walz avg: ", arrayToNum(walzValues));
-arrayToNum(parrishValues);
-console.log("Parrish avg: ", arrayToNum(parrishValues));
-arrayToNum(johnsonValues);
-console.log("Johnson avg: ", arrayToNum(johnsonValues));
-arrayToNum(stephensValues);
-console.log("Stephens avg: ", arrayToNum(stephensValues));
+    $( "form" ).submit(function( event ) {
+    // getting all the values entered from the form
+    var allValues = ( $( this ).serializeArray() );
+    event.preventDefault();
+    // want to work on an array rather than an object
+    let govScores = Object.values(allValues)
+    // governors will be my function, empty array is my starting object
+    // line is the array I'm iterating
+    .reduce((governors,line) => {
+        line = Object.values(line)
+        // console.log(line);
+        // need to trim the num to get the name of the candidate
+        line[0] = line[0].replace(/([\d])+/g,"");
+        // creates an array only if it doesn't already exist
+        governors[line[0]] = governors[line[0]] || []
+        // the string value is parsed into a num, and pushed to the array
+        governors[line[0]].push(parseInt(line[1]))
+        // governors is the array returned as govScores
+        return governors;
+    },[])
+    
+    console.log("govScores: ", govScores);
+    bestScore(govScores)
+    // console.log("Keys: ", Object.keys(govScores))
+    // console.log("Values: ", Object.values(govScores));
+        
+    // Object.keys(govScores).forEach((e, i) => {
+    //     let name = e;
+    //     console.log("name: ", name);
+    // })
+    // Object.entries(govScores).forEach((e) => {
+    //     console.log("Object.entries: ", e);
+    //     let name = `${key}`
+    //     let value = `${value}`
+    //     console.log("name: ",name,"\nValue",value)
+    // })
+   
+    // console.log(arrayAvg(Object.values(e)))
 
-});
-// finds the average of any array of numbers
+
+    /*
+    // creating arrays where value matches the name of candidate (strips the number from the id)
+    // problem: this is not dynamic. If create a new candidate, has to be able to run this
+     // can surely be done by a for loop (but then should be using data from API)
+    let murphyValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "murphy");
+    let walzValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "walz");
+    let johnsonValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "johnson");
+    let parrishValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "parrish");
+    let stephensValues = allValues.filter(allValues => allValues.name.replace(/([\d])+/g,"") === "stephens");
+
+    arrayToNum(murphyValues);
+    console.log("Murphy avg: ", arrayToNum(murphyValues));
+    arrayToNum(walzValues);
+    console.log("Walz avg: ", arrayToNum(walzValues));
+    arrayToNum(parrishValues);
+    console.log("Parrish avg: ", arrayToNum(parrishValues));
+    arrayToNum(johnsonValues);
+    console.log("Johnson avg: ", arrayToNum(johnsonValues));
+    arrayToNum(stephensValues);
+    console.log("Stephens avg: ", arrayToNum(stephensValues));
+    */
+    });
+}
+function bestScore(scoreObject) {
+    let arrayGov = [];
+    let arrayScores = [];
+    // creates an array with names, and array with scores where govs and their scores are stored
+    for (const [name, value] of Object.entries(scoreObject)) {
+        console.log(`Governor name: ${name} average score: ${arrayAvg(value)}`);
+        arrayGov.push(name);
+        arrayScores.push(parseFloat(arrayAvg(value)));
+        };
+    // find the highest by spreading
+    let highScore = Math.max(...arrayScores);
+    console.log(highScore);
+    /* find the index of the highest in the Array 
+    (in the future, this could be improved if multiple govs have the same score (right now, only returns 1)
+    could use the "filter" function to return an array, etc. */
+    let bestScore = arrayScores.indexOf(highScore);
+    // this index is also the one of the gov who got that score
+    let bestGov = arrayGov[bestScore]
+    console.log("Best Gov: ", bestGov)
+    return bestGov
+    };
+
+// arrow fonction to find the average of any array of numbers
 const arrayAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
-// converts "value" from string to number, then returns average 
-function arrayToNum(array){
-    let arrayNums = [];
-    for (let i = 0; i < array.length; i++) {
-      arrayNums.push(parseInt(array[i].value));
-    //   console.log("arrayNums: ", arrayNums);
-    }
-      let average = arrayAvg(arrayNums);
-    //   console.log("arrayAvg(arrayNums)", arrayAvg(arrayNums))
-      return average;
-    }    
-  
-// makes the text less compact by replacing all js \n by html <br>
+
+// function to make the text less compact by replacing all js \n by html <br>
 function lineBreak(jsText){
     return jsText.replace(/["\n"]/g,"<br>")
 }
