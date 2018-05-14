@@ -126,12 +126,14 @@ function getAPIdata(){
     }
 
 function createSurvey(govs){
-        govs.forEach((e,t) => {
-            let surveyDiv = $("<div>");
-                surveyDiv.addClass(`question ${e.party}`);
-                surveyDiv.attr("id", e.id);
-                $("#aPlaceForSurvey").prepend(surveyDiv);
-            e.stances.forEach((s,i) => {    
+    let arrayOfDivs = [];
+    let arrayOfQuestions = [];
+    let randomQuestion;
+    govs.forEach((e,t) => {
+        e.stances.forEach((s,i) => {    
+                
+            // for each stance of the candidate, iterates to:
+            // define a theme, a stance and creates a button set
             let stance = s.issue;
             let question = lineBreak(s.stance);
             
@@ -142,8 +144,7 @@ function createSurvey(govs){
             let option5 = {num : -5, string : "Strongly Disagree"}
                 
             let buttonsSet = 
-                `
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                `<div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-secondary">
                 <input type="radio" name="${e.id}${t}${i}" value="${option1.num}" autocomplete="off">${option1.string}
                 </label>
@@ -160,10 +161,23 @@ function createSurvey(govs){
                 <input type="radio" name="${e.id}${t}${i}" value="${option5.num}" autocomplete="off">${option5.string}
                 </label>
                 </div>`
-                $("#" + e.id).append(`<h3> ${stance} </h3> <br> <p> ${question}\n${buttonsSet}`);
-            });
-    })
-}
+                
+                // For each governor creates a div storing the party and id of the candidate
+            let questionSet = `<h3> ${stance} </h3> <br> <p> ${question}\n${buttonsSet}`
+            let surveyDiv = `<div id="${e.id}${i}" class="question ${e.party}">${questionSet}`;
+                arrayOfDivs.push(surveyDiv)
+                });
+            })
+            // this is the code to randomize the div, that we send to the HTML.
+        for (let i = 0; i < arrayOfDivs.length; i++) {
+            randomQuestion = arrayOfDivs[Math.floor(Math.random()*arrayOfDivs.length)]
+            let index = arrayOfDivs.indexOf(randomQuestion);
+            if (index > -1) {
+                arrayOfDivs.splice(index, 1);
+                $("#aPlaceForSurvey").prepend(randomQuestion);
+                }
+            }
+    }
 
 
 
