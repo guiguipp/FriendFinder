@@ -16,7 +16,7 @@
   <div class="container">
 
     <div class="jumbotron">
-        <h2 class="text-center">Create your own program to run for Governor!</h2>
+        <h2 class="text-center">Create candidate running for Governor!</h2>
         <hr>
       <br>
 
@@ -29,36 +29,36 @@
         <!-- Reservation Page -->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title">User</h4>
+            <h4 class="panel-title">Governor</h4>
           </div>
           <div class="panel-body">
 
             <form role="form">
 
               <div class="form-group">
-                <label for="reserve-name">Name</label>
-                <input type="text" class="form-control" id="reserve-name">
+                <label for="governor-name">Name</label>
+                <input type="text" class="form-control" id="governor-name">
               </div>
 
               <div class="form-group">
-                <label for="reserve-email">Photo</label>
-                <input type="text" class="form-control" id="reserve-email">
+                <label for="governor-photo">URL Photo</label>
+                <input type="text" class="form-control" id="governor-photo">
               </div>
 
               <div class="form-group">
-                <label for="reserve-unique-id">Party</label>
-                <input type="text" class="form-control" id="reserve-unique-id">
+                <label for="governor-party">Party</label>
+                <input type="text" class="form-control" id="governor-party">
               </div>
               <div class="form-group">
-                <label for="reserve-unique-id">Site</label>
-                <input type="text" class="form-control" id="reserve-unique-id">
+                <label for="governor-site">Site</label>
+                <input type="text" class="form-control" id="govertor-site">
                 </div>
-            <button type="button" class="btn btn-secondary submit" id="add_position">Add Position</button>
-            <button type="submit" class="btn btn-primary submit" id="send" >Submit</button>
             </form>
             <div id="program">
-
+                
             </div>
+            <button type="button" class="btn btn-secondary submit add_position">Add Position</button>
+            <button type="submit" class="btn btn-primary submit" id="send" >Submit</button>
           </div>
         </div>
 
@@ -81,53 +81,77 @@
 <script type="text/javascript">
 $( document ).ready(function() {
 
-$("#add_position").click(function(event) {
+$(".add_position").click(function(event) {
     event.preventDefault();
-    console.log("try this")
-    let programDiv = `<br> <br> <div class="form-group">
-                <label for="reserve-unique-id">Summary</label>
-                <input type="text" class="form-control">
-                <label for="reserve-unique-id">Content</label>
-                <textarea class="form-control" rows="5" class="idea"></textarea>
+    let programDiv = `<div class="additional form-group"><br> <br> 
+                <label for="stance-summary">Summary</label>
+                <input type="text" name="issue" class="form-control">
+                <label for="stance-complete">Content</label>
+                <textarea class="form-control" name="stance" rows="5" class="idea"></textarea>
                 </div>`
-    $("#program").append(programDiv)
+    $("#program").prepend(programDiv)
     });
 
 
-    $("#send").on("click", function(event) {
-      event.preventDefault();
+$("#send").on("click", function(event) {
+    event.preventDefault();
+    // Here we grab the form elements
+    var arrayOfPositions = $("#program :input").serializeArray() 
 
-      // Here we grab the form elements
-      var newUser = {
-        userName: $("#reserve-name").val().trim(),
-        userEmail: $("#reserve-email").val().trim(),
-        userId: $("#reserve-unique-id").val().trim()
-      };
+    // for (let i = 0; i < arrayOfPositions.length; i+2) {
+    //     console.log(arrayOfPositions[i]);
+    // }
+    // .reduce((stance,line) => {
+        
+    // },[])    
+    
+    
+    // console.log("stances array: ", stances);
+    
 
-    //   console.log(newUser);
+    function Governor (id, name, photo, party, site, stances) {
+        this.id = id,
+        this.name = name,
+        this.photo = photo,
+        this.party = party,
+        this.site = site,
+        this.stances = stances
+        }
+    function Stances (governor,issue,stance){
+        this.governor = governor,
+        this.issue = issue,
+        this.stance = stance
+        }
+       
+    
+    let newGov = new Governor(
+        $("#governor-name").val().trim().replace(/([\s])+/g,""),
+        $("#governor-name").val().trim(),
+        $("#governor-photo").val().trim(),
+        $("#governor-party").val().trim(),
+        $("#govertor-site").val().trim(),
+        $("#program :input").serializeArray() 
+    )
+        console.log("newGov: ", newGov);  
 
-      // This line is the magic. It's very similar to the standard ajax function we used.
-      // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-      // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-      // depending on if a tables is available or not.
+    $.post("/api/governors", newGov,
+    function(data) {
+        if (data) {
+            alert("Governor created");
+        }
+        // If a table is not available... tell user they on the waiting list.
+        else {
+            alert("This candidate already exists. Please try another one!");
+        }
 
-      $.post("/api/friends", newUser,
-      function(data) {
-          // If a table is available... tell user they are booked.
-          if (data) {
-            alert("User profile created");
-          }
-
-          // If a table is not available... tell user they on the waiting list.
-          else {
-            alert("This ID is already taken. Please try another one!");
-          }
-
-          // Clear the form when submitting
-          $("#reserve-name").val("");
-          $("#reserve-email").val("");
-          $("#reserve-unique-id").val("");
-
+        // Clear the form when submitting
+        $(".form-value").val("");
+        $("#governor-name").val("");
+        $("#govertor-site").val("");
+        $("#governor-photo").val("");
+        $("#govertor-id").val("");
+        $("#governor-party").val("");
+        $(".additional").remove()
         });
 
     });

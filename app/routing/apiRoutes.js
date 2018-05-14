@@ -4,8 +4,8 @@
 // These data sources hold arrays of information on table-data, waitinglist, etc.
 // ===============================================================================
 
-var userData = require("../data/friends");
-var govData = require("../data/governors");
+const userData = require("../data/friends");
+const govData = require("../data/governors");
 
 
 
@@ -47,6 +47,20 @@ module.exports = function(app) {
     })
 
     app.post("/api/governors", function(req, res) {
-      console.log("New Governor");
+      let existingIds = [];
+      // console.log(govData.governors)
+      govData.governors.forEach((e) => {
+      existingIds.push(e.id)
+      });  
+      console.log("index: ", existingIds.indexOf(req.body.id));
+        
+        if(existingIds.indexOf(req.body.id) === -1) {
+          res.json(true);
+          govData.governors.push(req.body);
+        }
+        else {
+          res.json(false);
+        }
       })
+  
 };

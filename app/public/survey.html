@@ -222,8 +222,7 @@ function displayInfo(dataSet,chosenOne){
         if (e.id === chosenOne) {
             // we can get all the information from the Governor via this for each loop
             console.log(e.party)
-            $("#gov_name").html(`<h4>You voted for: ${e.name}`)
-            $("#gov_party").text(`${e.party}`);
+            $("#gov_name").html(`<h4>You voted for: ${e.name} (${e.party})`)
             $("#gov_photo").html(`<img src="${e.photo}" alt="${e.name}}">`);
             $("#gov_site").html(`More information on their campaign <a href="${e.site}"site">site</a>`);
 
