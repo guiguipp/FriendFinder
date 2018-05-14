@@ -98,9 +98,9 @@ $(".add_position").click(function(event) {
 
 $("#send").on("click", function(event) {
     event.preventDefault();
-    // Here we grab the form elements
-    var badArray = $("#button_id :input").serializeArray() 
-  // since serializeArray sets the keys as "Name" & "Value", I have to remap the objects
+    let govName = $("#governor-name").val().trim();
+    let badArray = $("#button_id :input").serializeArray() 
+    // since serializeArray sets the keys as "Name" & "Value", I have to remap the objects
     var goodArray = badArray.map(obj => { 
     var rObj = {};
         rObj[obj.name] = obj.value;
@@ -113,7 +113,7 @@ $("#send").on("click", function(event) {
         reformattedArray = [];
         for (let i = 0; i < array.length; i++) {
           if (i%2 !== 0) {
-            array[i-1] = Object.assign(array[i],array[i-1]);
+            array[i-1] = Object.assign({ governor: govName },array[i],array[i-1]);
             reformattedArray.push(array[i-1])
           }
         }
@@ -133,7 +133,7 @@ $("#send").on("click", function(event) {
     
     let newGov = new Governor(
         $("#governor-name").val().trim().replace(/([\s])+/g,""),
-        $("#governor-name").val().trim(),
+        govName,
         $("#governor-photo").val().trim(),
         $("#governor-party").val().trim(),
         $("#govertor-site").val().trim(),

@@ -126,15 +126,14 @@ function getAPIdata(){
     }
 
 function createSurvey(govs){
-    for (let t = 0; t < 4; t++) {
-        govs.forEach((e,i) => {
+        govs.forEach((e,t) => {
             let surveyDiv = $("<div>");
                 surveyDiv.addClass(`question ${e.party}`);
                 surveyDiv.attr("id", e.id);
                 $("#aPlaceForSurvey").prepend(surveyDiv);
-                
-            let stance = e.stances[t].issue;
-            let question = lineBreak(e.stances[t].stance);
+            e.stances.forEach((s,i) => {    
+            let stance = s.issue;
+            let question = lineBreak(s.stance);
             
             let option1 = {num : 5, string : "Strongly Agree"};
             let option2 = {num : 3, string : "Agree"};
@@ -146,25 +145,26 @@ function createSurvey(govs){
                 `
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}${t}" value="${option1.num}" autocomplete="off">${option1.string}
+                <input type="radio" name="${e.id}${t}${i}" value="${option1.num}" autocomplete="off">${option1.string}
                 </label>
                 <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}${t}" value="${option2.num}" autocomplete="off">${option2.string}
+                <input type="radio" name="${e.id}${t}${i}" value="${option2.num}" autocomplete="off">${option2.string}
                 </label>
                 <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}${t}" value="${option3.num}" autocomplete="off">${option3.string}
+                <input type="radio" name="${e.id}${t}${i}" value="${option3.num}" autocomplete="off">${option3.string}
                 </label>
                 <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}${t}" value="${option4.num}" autocomplete="off">${option4.string}
+                <input type="radio" name="${e.id}${t}${i}" value="${option4.num}" autocomplete="off">${option4.string}
                 </label>
                 <label class="btn btn-secondary">
-                <input type="radio" name="${e.id}${t}" value="${option5.num}" autocomplete="off">${option5.string}
+                <input type="radio" name="${e.id}${t}${i}" value="${option5.num}" autocomplete="off">${option5.string}
                 </label>
                 </div>`
                 $("#" + e.id).append(`<h3> ${stance} </h3> <br> <p> ${question}\n${buttonsSet}`);
             });
-        }
-    }
+    })
+}
+
 
 
 getAPIdata();
@@ -173,6 +173,8 @@ function getScores(dataSet){
     $( "form" ).submit(function( event ) {
     // getting all the values entered from the form
     var allValues = ( $( this ).serializeArray() );
+    console.log(allValues);
+    
     event.preventDefault();
     // want to work on an array rather than an object
     let govScores = Object.values(allValues)
@@ -191,7 +193,7 @@ function getScores(dataSet){
         // governors is the array returned as govScores
         return governors;
     },[])    
-    // console.log("govScores: ", govScores);
+    console.log("govScores: ", govScores);
     bestScore(govScores,dataSet)
     });
 }
@@ -205,7 +207,7 @@ function bestScore(scoreObject,dataSet) {
         };
     // find the highest by spreading
     let highScore = Math.max(...arrayScores);
-    // console.log("highest average in the array: ", highScore);
+    console.log("highest average in the array: ", highScore);
     /* find the index of the highest average in the Array 
     (in the future, this could be improved if multiple govs have the same score (right now, only returns 1)
     could use the "filter" function to return an array, etc. */
