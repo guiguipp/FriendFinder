@@ -13,11 +13,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Chivo|Marvel|Monoton|Reem+Kufi" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/styles.css">
 
 </head>
 <body>
 
-  <div class="container">
+    <div class="container">
     
     <div class="jumbotron">
       <h1 class="text-center"> Voting both</h1>
@@ -25,13 +26,15 @@
       
 
       <div class="text-center">
-        <a href="../survey"><button class="btn btn-lg btn-primary">Take Survey</button></a>
-        <a href="../candidates"><button class="btn btn-lg btn-danger">See candidates</button></a>
-      </div>
+            <a href="../survey"><button class="btn btn-lg btn-primary">Take Survey</button></a>
+            <a href="../candidates"><button class="btn btn-lg btn-danger">See all candidates</button></a>
+            <a href="../run"><button class="btn btn-lg btn-danger">Enter a candidate</button></a>
+            <a href="../user"><button class="btn btn-lg btn-danger">Create a user profile</button></a>
+          </div>
 
     </div>
 
-    <div class="container">
+    <!-- <div class="container"> -->
         <p> For each of these statement, mark if you:</p> 
             <ul>
                 <li>"Strongly Agree",</li>
@@ -43,8 +46,8 @@
             <p>to figure which of the candidates for the position of Governor of the State of Minnesota you are the closes to.</p>
             <br>
         <p>Tip: You can also trigger the "Primary" mode, by showing/hiding the candidates of one party</p>        
-        <button type="button" class="btn btn-danger" id="toggle_dfl">Show/Hide DFL</button>
-        <button type="button" class="btn btn-primary" id="toggle_rep">Show/Hide Republicans</button>
+        <button type="button" class="btn blue darken-2" id="toggle_dfl">Show/Hide DFL</button>
+        <button type="button" class="btn red darken-2" id="toggle_rep">Show/Hide Republicans</button>
                 
         <div class="panel-body">
             <form>
@@ -80,7 +83,9 @@
     
     <footer class="footer">
       <div class="container">
-        <p><a href="/api/friends">API Voters</a> | <a href="/api/governors">API Governors</a> | <a href="https://github.com/guiguipp/FriendFinder">GitHub Repo</a></p>
+          <br>
+          <br>
+        <p><a href="/api/friends">API Voters</a> | <a href="/api/governors">API Governors</a></p>
       </div>
     </footer>
 
@@ -145,19 +150,19 @@ function createSurvey(govs){
                 
             let buttonsSet = 
                 `<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary">
+                <label class="btn btn-secondary green lighten-1">
                 <input type="radio" name="${e.id}${t}${i}" value="${option1.num}" autocomplete="off">${option1.string}
                 </label>
-                <label class="btn btn-secondary">
+                <label class="btn btn-secondary light-green lighten-1">
                 <input type="radio" name="${e.id}${t}${i}" value="${option2.num}" autocomplete="off">${option2.string}
                 </label>
-                <label class="btn btn-secondary">
+                <label class="btn btn-secondary lime lighten-1">
                 <input type="radio" name="${e.id}${t}${i}" value="${option3.num}" autocomplete="off">${option3.string}
                 </label>
-                <label class="btn btn-secondary">
+                <label class="btn btn-secondary orange lighten-1">
                 <input type="radio" name="${e.id}${t}${i}" value="${option4.num}" autocomplete="off">${option4.string}
                 </label>
-                <label class="btn btn-secondary">
+                <label class="btn btn-secondary deep-orange lighten-1">
                 <input type="radio" name="${e.id}${t}${i}" value="${option5.num}" autocomplete="off">${option5.string}
                 </label>
                 </div>`
@@ -186,9 +191,7 @@ getAPIdata();
 function getScores(dataSet){
     $( "form" ).submit(function( event ) {
     // getting all the values entered from the form
-    var allValues = ( $( this ).serializeArray() );
-    console.log(allValues);
-    
+    var allValues = ( $( this ).serializeArray() );    
     event.preventDefault();
     // want to work on an array rather than an object
     let govScores = Object.values(allValues)
@@ -207,7 +210,7 @@ function getScores(dataSet){
         // governors is the array returned as govScores
         return governors;
     },[])    
-    console.log("govScores: ", govScores);
+    // console.log("govScores: ", govScores);
     bestScore(govScores,dataSet)
     });
 }
@@ -239,7 +242,7 @@ function displayInfo(dataSet,chosenOne){
             // we can get all the information from the Governor via this for each loop
             console.log(e.party)
             $("#gov_name").html(`<h4>You voted for: ${e.name} (${e.party})`)
-            $("#gov_photo").html(`<img src="${e.photo}" alt="${e.name}}">`);
+            $("#gov_photo").html(`<img src="${e.photo}" alt="${e.name}">`);
             $("#gov_site").html(`More information on their campaign <a href="${e.site}"site">site</a>`);
 
         }

@@ -9,22 +9,25 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Chivo|Marvel|Monoton|Reem+Kufi" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/styles.css">
 
 </head>
 <body>
 
   <div class="container">
-
-    <div class="jumbotron">
-      <h1 class="text-center"><span class="fa fa-fire"></span> Hot Restaurant</h1>
-      <hr>
-      <h2 class="text-center">Elections, elections, elections...</h2>
-      <br>
-
+      <div class="jumbotron">
+          <h1 class="text-center"> Candidates</h1>
+          <hr>
       <div class="text-center">
-        <a href="/reserve"><button class="btn btn-lg btn-danger"><span class="fa fa-credit-card"></span> Make Reservation</button></a>
-        <a href="/"><button class="btn btn-lg btn-default"><span class="fa fa-home"></span></button></a>
-      </div>
+          <a href="../survey"><button class="btn btn-lg btn-primary">Take Survey</button></a>
+          <a href="../candidates"><button class="btn btn-lg btn-danger">See all candidates</button></a>
+          <a href="../run"><button class="btn btn-lg btn-danger">Enter a candidate</button></a>
+          <a href="../user"><button class="btn btn-lg btn-danger">Create a user profile</button></a>
+        </div>
     </div>
 
     <div class="row">
@@ -33,30 +36,25 @@
         <!-- Current Tables in Use -->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title">Current Reservations</h4>
+            <h4 class="panel-title">  ...this page is currently under construction. 
+              <br>Please come back later!
+              </h4>
           </div>
           <div class="panel-body" id="tableSection">
           </div>
         </div>
 
-        <!-- Waiting List Panel -->
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">Waiting List</h4>
-          </div>
-          <div class="panel-body" id="waitlistSection">
-          </div>
-        </div>
       </div>
     </div>
 
 
     <footer class="footer">
-      <div class="container">
-        <p>Control Panel</p>
-        <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a> | <a href="https://github.com/afhaque/HotRestaurant">GitHub Repo</a></p>
-      </div>
-    </footer>
+        <div class="container">
+            <br>
+            <br>
+          <p><a href="/api/friends">API Voters</a> | <a href="/api/governors">API Governors</a></p>
+        </div>
+      </footer>
 
   </div>
 
