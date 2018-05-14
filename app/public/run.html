@@ -57,8 +57,11 @@
             <div id="program">
                 
             </div>
-            <button type="button" class="btn btn-secondary submit add_position">Add Position</button>
-            <button type="submit" class="btn btn-primary submit" id="send" >Submit</button>
+            <div id="button_id">
+              <button type="button" class="btn btn-secondary submit add_position">Add Position</button>
+              <button type="submit" class="btn btn-primary submit" id="send" >Submit</button>
+
+            </div>
           </div>
         </div>
 
@@ -89,25 +92,35 @@ $(".add_position").click(function(event) {
                 <label for="stance-complete">Content</label>
                 <textarea class="form-control" name="stance" rows="5" class="idea"></textarea>
                 </div>`
-    $("#program").prepend(programDiv)
+    $("#button_id").append(programDiv)
     });
 
 
 $("#send").on("click", function(event) {
     event.preventDefault();
     // Here we grab the form elements
-    var arrayOfPositions = $("#program :input").serializeArray() 
+    var badArray = $("#button_id :input").serializeArray() 
+  // since serializeArray sets the keys as "Name" & "Value", I have to remap the objects
+    var goodArray = badArray.map(obj => { 
+    var rObj = {};
+        rObj[obj.name] = obj.value;
+        return rObj;
+        })
+        console.log(goodArray);
+  // I also have to pair them together, as serialized separated the inputs in two arrays
+  // for this, in my array I group every odd index with the previous index (using Object.assign)
+      function grouping(array){
+        reformattedArray = [];
+        for (let i = 0; i < array.length; i++) {
+          if (i%2 !== 0) {
+            array[i-1] = Object.assign(array[i],array[i-1]);
+            reformattedArray.push(array[i-1])
+          }
+        }
+        return reformattedArray;
+      }
+      grouping(goodArray);
 
-    // for (let i = 0; i < arrayOfPositions.length; i+2) {
-    //     console.log(arrayOfPositions[i]);
-    // }
-    // .reduce((stance,line) => {
-        
-    // },[])    
-    
-    
-    // console.log("stances array: ", stances);
-    
 
     function Governor (id, name, photo, party, site, stances) {
         this.id = id,
@@ -117,12 +130,6 @@ $("#send").on("click", function(event) {
         this.site = site,
         this.stances = stances
         }
-    function Stances (governor,issue,stance){
-        this.governor = governor,
-        this.issue = issue,
-        this.stance = stance
-        }
-       
     
     let newGov = new Governor(
         $("#governor-name").val().trim().replace(/([\s])+/g,""),
@@ -130,7 +137,7 @@ $("#send").on("click", function(event) {
         $("#governor-photo").val().trim(),
         $("#governor-party").val().trim(),
         $("#govertor-site").val().trim(),
-        $("#program :input").serializeArray() 
+        reformattedArray
     )
         console.log("newGov: ", newGov);  
 
